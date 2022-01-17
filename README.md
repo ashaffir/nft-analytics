@@ -11,11 +11,10 @@ sudo service rabbitmq-server start
 ### Server
 * Make sure to use Python 3.8 or higher
 
-ptyhon -m venv venv
+python3 -m venv venv
 source ./venv/bin/activate
 
 pip install -r requirements.txt
-python manage.py migrate
 
 ### Run server locally
 ./manage runserver
