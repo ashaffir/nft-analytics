@@ -17,7 +17,7 @@ class Collection(models.Model):
     editors = models.JSONField(default=list)
     name = models.CharField(max_length=100)
     slug = models.CharField(max_length=100)
-    address = models.CharField(max_length=50)
+    address = models.CharField(max_length=50, null=True, blank=True)
     tracked = models.BooleanField(default=False)
 
     class Meta:

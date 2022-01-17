@@ -102,14 +102,13 @@ class HomeView(TemplateView):
                         collection_info["created"] = collection["collection"][
                             "created_date"
                         ]
-                        if collection["collection"]["primary_asset_contracts"][0][
-                            "address"
-                        ]:
+
+                        try:
                             collection_info["address"] = collection["collection"][
                                 "primary_asset_contracts"
                             ][0]["address"]
-                        else:
-                            collection_info["address"] = []
+                        except:
+                            collection_info["address"] = None
 
                         collection_info["tracked"] = True
 
