@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <form class="form-horizontal" method="POST">
+                {% csrf_token %}
+              <div class="card-body">
+                <select class="form-control mb-4" name="data_selector" id="data_selector">
+                  <option value="">Select Data</option>
+                  <option value="assets">Assets</option>
+                  <option value="collections">Collections</option>
+                </select>
+
+                <h4 class="card-title">Filters</h4>
+
+                <div class="form-group row">
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      class="form-control text-start"
+                      id="asset_owner"
+                      name="asset_owner"
+                      placeholder="Asset Owner Address"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="collection_slug"
+                      name="collection_slug"
+                      placeholder="Collection Slug"
+                    />
+                  </div>
+                  <div class="col-md-2 col-4 col-md-4 pt-2">
+                    <div class="form-check">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="track"
+                        name="track"
+                      />
+                      <label
+                        class="form-check-label mb-0 pt-1"
+                        for="track"
+                        >Track Collection</label
+                      >
+                    </div>                  
+                  </div>
+                  <div class="form-group row mt-3">
+                    <div class="col-sm-3 col-md-3">
+                      <input
+                        type="number"
+                        class="form-control text-start"
+                        id="limit"
+                        name="limit"
+                        placeholder="Limit"
+                      />
+                    </div>
+                  </div>
+                </div>
+              <div class="border-top">
+                <div class="card-body">
+                  <button type="submit" class="btn btn-primary">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                  <div class="alert alert-danger">
+                    {{ message }}          
+                  </div>
+                {% elif message.tags == "warning" %}
+                  <div class="alert alert-warning">
+                    {{ message }}          
+                  </div>
+                {% elif message.tags == "success" %}
+                  <div class="alert alert-success">
+                    {{ message }}          
+                  </div>
+                {% endif %}
+            {% endfor %}
+          </div>
+      </div>
+    </div>
+
+    {% if collection.collection.stats %}
+      <!-- {{ collection.collection.stats }} -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h5>Collection <b>{{ collection.collection.slug }} current stats:</h5>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="#" class="link">Total Supply</a></td>
+                <td>{{ collection.collection.stats.total_supply }}</td>
+              </tr>
+              <tr>
+                <td><a href="#" class="link">Count</a></td>
+                <td>{{ collection.collection.stats.count }}</td>
+              </tr>
+              <tr>
+                <td><a href="#" class="link">Number of owners</a></td>
+                <td>{{ collection.collection.stats.num_owners }}</td>
+              </tr>
+              <tr>
+                <td><a href="#" class="link">Average Price</a></td>
+                <td>{{ collection.collection.stats.average_price }}</td>
+              </tr>
+              <tr>
+                <td><a href="#" class="link">Floor Price</a></td>
+                <td>{{ collection.collection.stats.floor_price }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="col-12 col-md-12">
+        <h4>Collections for owner: <b>{{ asset_owner }}</b></h4>
+        <h5>Number of collections: <b>{{ collections|length }}</b></h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-12">
+        <h5>List of collection slugs </h5>
+        <ul>
+            {% for collection in collections %}
+                <li>{{ collection.slug  }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+      <!-- <h5>Asset <b>{{ asset }}</b> information:</h5> -->
+      {{ assets }}
+
+  </div>
+</div>
+
+<!-- <div class="row">
+  <div class="col-12 col-md-12">
+    <h5>Collection - {{ collection.name }}</h5>
+    {{ collection }}
+  </div>
+</div> -->
+
+{% endblock content %}

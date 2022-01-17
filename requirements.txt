@@ -1,0 +1,7 @@
+requests
+django
+djangorestframework
+Celery
+django-celery-beat
+flower
+plotly

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Stats
+{% endblock title %}
+{% block content %}
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-0"><b>{{ stats.collection.name }}</b> current statistics</h5>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Parameter</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#" class="link">Total Supply</a></td>
+            <td>{{ stats.total_supply }}</td>
+          </tr>
+          <tr>
+            <td><a href="#" class="link">Count</a></td>
+            <td>{{ stats.count }}</td>
+          </tr>
+          <tr>
+            <td><a href="#" class="link">Number of owners</a></td>
+            <td>{{ stats.num_owners }}</td>
+          </tr>
+          <tr>
+            <td><a href="#" class="link">Average Price</a></td>
+            <td>{{ stats.average_price }}</td>
+          </tr>
+          <tr>
+            <td><a href="#" class="link">Floor Price</a></td>
+            <td>{{ stats.floor_price }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-6">
+    {% if graph %}
+        {{ graph|safe }}
+    {% endif %}
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-4">
+        <div class="card">
+            <div class="card-header">
+                Ratios
+            </div>
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
