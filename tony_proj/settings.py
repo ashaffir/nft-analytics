@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Tony's apps
+    "main",
     "opensea",
     "etherscan",
     "django_celery_beat",
@@ -124,11 +125,11 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static/",  # os.path.join(BASE_DIR, 'static')
-    BASE_DIR / "main/static/",
-    BASE_DIR / "main/static/main/assets",
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static/",  # os.path.join(BASE_DIR, 'static')
+#     BASE_DIR / "main/static/",
+#     BASE_DIR / "main/static/main/assets",
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

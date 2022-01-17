@@ -17,7 +17,7 @@ source ./venv/bin/activate
 pip install -r requirements.txt
 
 ### Run server locally
-./manage runserver
+python3 ./manage.py runserver
 
 Open the browser on: http://localhost:8000
 
