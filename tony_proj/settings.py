@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "opensea",
     "etherscan",
     "django_celery_beat",
+    "django_celery_results",
 ]
 
 MIDDLEWARE = [

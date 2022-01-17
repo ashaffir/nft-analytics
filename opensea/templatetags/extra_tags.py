@@ -6,7 +6,11 @@ register = template.Library()
 
 @register.filter
 def ts_to_date(value):
-    return datetime.fromtimestamp(int(value))
+    try:
+        ttd = datetime.fromtimestamp(int(value))
+    except:
+        ttd = value
+    return ttd
 
 
 @register.filter

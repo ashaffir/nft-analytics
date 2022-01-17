@@ -8,7 +8,11 @@
   <div class="col-md-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title mb-0"><b>{{ stats.collection.name }}</b> current statistics</h5>
+        {% if stats %}
+          <h5 class="card-title mb-0"><b>{{ stats.collection.name }}</b> current statistics</h5>
+        {% else %}
+          <h5 class="card-title mb-0">Not enough data collected for colleciton <b>{{ collection.name }}</b></h5>
+        {% endif %}
       </div>
       <table class="table">
         <thead>
@@ -45,6 +49,8 @@
   <div class="col-md-6">
     {% if graph %}
         {{ graph|safe }}
+    {% else %}
+      <H1>Not Enough Data Collected</H1>
     {% endif %}
   </div>
 </div>
